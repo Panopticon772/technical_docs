@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>FCC: Technical Documentation</title>
+    <meta name="" content="">
+    <meta name="" content="">
+
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav id="navbar">
+        <header id="header">
+            <h1 id="title">PowerShell Documentation</h1>
+        </header>
+        <ul>
+            <li><a href="#What_is_PowerShell?" class="nav-link">What is PowerShell?</a></li>
+            <li><a href="#Output_is_object-based" class="nav-link">Output is object-based</a></li>
+            <li><a href="#The_command_family_is_extensible" class="nav-link">The command family is extensible</a></li>
+            <li><a href="#Support_for_command_aliases" class="nav-link">Support for command aliases</a></li>
+            <li><a href="#PowerShell_handles_console_input_and_display" class="nav-link">PowerShell handles console
+                    input and display</a></li>
+            <li><a href="#PowerShell_has_a_pipeline" class="nav-link">PowerShell has a pipeline</a></li>
+            <li><a href="#Objects_in_the_pipeline" class="nav-link">Objects in the pipeline</a></li>
+            <li><a href="#Built-in_help_system" class="nav-link">Built-in help system</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <section id="What_is_PowerShell?" class="main-section">
+            <header>
+                <h1 id="" class="section-titles">What is PowerShell?</h1>
+            </header>
+            <p class="section-text">PowerShell is a cross-platform task automation and configuration management
+                framework, consisting of
+                a command-line shell and scripting language. Unlike most shells, which accept and return text,
+                PowerShell is built on top of the .NET Common Language Runtime (CLR), and accepts and returns .NET
+                objects. This fundamental change brings entirely new tools and methods for automation.
+            </p>
+        </section>
+        <section id="Output_is_object-based" class="main-section">
+            <header>
+                <h1 id="" class="section-titles">Output is object-based</h1>
+            </header>
+            <p class="section-text">
+                Unlike traditional command-line interfaces, PowerShell cmdlets are designed to deal with objects. An
+                object is structured information that is more than just the string of characters appearing on the
+                screen. Command output always carries extra information that you can use if you need it.
+            </p>
+            <p class="section-text">
+                If you've used text-processing tools to process data in the past, you'll find that they behave
+                differently when used in PowerShell. In most cases, you don't need text-processing tools to extract
+                specific information. You directly access portions of the data using standard PowerShell object
+                syntax.
+            </p>
+            <p class="section-text">Below is an overview of some of the PowerShell data types:</p>
+            <ul>
+                <li class="data-types">[string]: "Hello"</li>
+                <li class="data-types">[bool]: True or False</li>
+                <li class="data-types">[int]: 64 or 122.8</li>
+                <li class="data-types">[array]: $myArray = @[1, 2, 3, 4, 5]</li>
+                <li class="data-types">[hashtable]: $myObject = @{ color = "green" }</li>
+            </ul>
+        </section>
+        <section id="The_command_family_is_extensible" class="main-section">
+            <header>
+                <h1 class="section-titles">The command family is extensible</h1>
+            </header>
+            <p class="section-text">
+                Interfaces such as cmd.exe don't provide a way for you to directly extend the built-in command set.
+                You can create external command-line tools that run in cmd.exe. But these external tools don't have
+                services, such as Help integration. cmd.exe doesn't automatically know that these external tools are
+                valid commands.
+            </p>
+            <p class="section-text">
+                The commands in PowerShell are known as cmdlets. You can use each cmdlet separately, but their power
+                is realized when you combine them to perform complex tasks. Like many shells, PowerShell gives you
+                access to the file system on the computer. PowerShell providers enable you to access other data
+                stores, such as the registry and the certificate stores, as easily as you access the file system. Below
+                is an example of a cmdlet that gets all Active Directory users and retrieves their name, samAccount
+                name, and email properties.
+            </p>
+            <code>
+                Get-ADUser -Filter * -Properties name, samAccountName, mail
+            </code>
+            <p class="section-text">
+                You can create your own cmdlet and function modules using compiled code or scripts. Modules can add
+                cmdlets and providers to the shell. PowerShell also supports scripts that are analogous to UNIX
+                shell scripts and cmd.exe batch files.
+            </p>
+        </section>
+        <section id="Support_for_command_aliases" class="main-section">
+            <header>
+                <h1 class="section-titles">Support for command aliases</h1>
+            </header>
+            <p class="section-text">
+                PowerShell supports aliases to refer to commands by alternate names. Aliasing allows users with
+                experience in other shells to use common command names that they already know for similar operations
+                in PowerShell.
+            </p>
+            <p class="section-text">
+                Aliasing associates a new name with another command. For example, PowerShell has an internal
+                function named Clear-Host that clears the output window. You can type either the cls or clear alias
+                at a command prompt. PowerShell interprets these aliases and runs the Clear-Host function.
+            </p>
+            <p class="section-text">
+                This feature helps users to learn PowerShell. First, most cmd.exe and Unix users have a large
+                repertoire of commands that users already know by name. The PowerShell equivalents may not produce
+                identical results. However, the results are close enough that users can do work without knowing the
+                PowerShell command name. "Muscle memory" is another major source of frustration when learning a new
+                command shell. If you have used cmd.exe for years, you might reflexively type the cls command to
+                clear the screen. Without the alias for Clear-Host, you receive an error message and won't know what
+                to do to clear the output. The Get-Alias cmdlet gets the aliases in the current session. This includes
+                built-in aliases, aliases that you have set or imported, and aliases that you have added to your
+                PowerShell profile. This command gets all aliases that begin with gp or sp, except for aliases that end
+                with ps.
+            </p>
+            <code>
+                Get-Alias -Name gp*, sp* -Exclude *ps
+            </code>
+
+        </section>
+        <section id="PowerShell_handles_console_input_and_display" class="main-section">
+            <header>
+                <h1 class="section-titles">PowerShell handles console input and display</h1>
+            </header>
+            <p class="section-text">
+                When you type a command, PowerShell always processes the command-line input directly. PowerShell
+                also formats the output that you see on the screen. This difference is significant because it
+                reduces the work required of each cmdlet. It ensures that you can always do things the same way with
+                any cmdlet. Cmdlet developers don't need to write code to parse the command-line arguments or format
+                the output.
+            </p>
+            <p class="section-text">
+                Traditional command-line tools have their own schemes for requesting and displaying Help. Some
+                command-line tools use /? to trigger the Help display; others use -?, /H, or even //. Some will
+                display Help in a GUI window, rather than in the console display. If you use the wrong parameter,
+                the tool might ignore what you typed and begin executing a task automatically. Since PowerShell
+                automatically parses and processes the command line, the -? parameter always means "show me Help for
+                this command".
+            </p>
+        </section>
+        <section id="PowerShell_has_a_pipeline" class="main-section">
+            <header>
+                <h1 class="section-titles">PowerShell has a pipeline</h1>
+            </header>
+            <p class="section-text">
+                Pipelines are arguably the most valuable concept used in command-line interfaces. When used
+                properly,
+                pipelines reduce the effort of using complex commands and make it easier to see the flow of work.
+                Each
+                command in a pipeline passes its output, item by item, to the next command. Commands don't have to
+                handle more than one item at a time. The result is reduced resource consumption and the ability to
+                get
+                output immediately. Pipelines work like this:
+            </p>
+            <code>
+                Command-1 | Command-2 | Command-3
+            </code>
+            <p class="section-text">
+                The notation used for pipelines is similar to the notation used in other shells. At first glance, it
+                may
+                not be apparent how pipelines are different in PowerShell. Although you see text on the screen,
+                PowerShell pipes objects, not text, between commands. In this example, the Get-Process cmdlet gets all
+                the current running processes on the local machine, then pipes that output to Select-Object which then
+                captures the Name and ID of each process, which is then sorted in descending order and finally piped to
+                format the output as a list.
+            </p>
+            <code>
+                Get-Process -Name * | Select-Object name, id | Sort-Object -Descending | Format-List
+            </code>
+        </section>
+        <section id="Objects_in_the_pipeline" class="main-section">
+            <header>
+                <h1 class="section-titles">Objects in the pipeline</h1>
+            </header>
+            <p class="section-text">
+                Pipelines are arguably the most valuable concept used in command-line interfaces. When used
+                properly,
+                pipelines reduce the effort of using complex commands and make it easier to see the flow of work.
+                Each
+                command in a pipeline passes its output, item by item, to the next command. Commands don't have to
+                handle more than one item at a time. The result is reduced resource consumption and the ability to
+                get
+                output immediately.
+            </p>
+            <p class="section-text">
+                The notation used for pipelines is similar to the notation used in other shells. At first glance, it
+                may
+                not be apparent how pipelines are different in PowerShell. Although you see text on the screen,
+                PowerShell pipes objects, not text, between commands.
+            </p>
+        </section>
+        <section id="Built-in_help_system" class="main-section">
+            <header>
+                <h1 class="section-titles">Built-in help system</h1>
+            </header>
+            <p class="section-text">
+                Similar to Unix man pages, PowerShell includes detailed help articles that explain PowerShell
+                concepts and command syntax. Use the Get-Help cmdlet to display these articles at the command prompt
+                or view the most recently updated versions of these articles in the PowerShell documentation online.
+            </p>
+            <p class="section-text">
+                Get-Help is a multipurpose command. Get-Help helps you learn how to use commands once you find them. To
+                get help for a PowerShell cmdlet, type Get-Help followed by the cmdlet name.
+            </p>
+            <code>
+                Get-Help Get-ADUser
+            </code>
+        </section>
+        <footer>
+            <p class="section-text">Info taken from <a href="https://docs.microsoft.com/en-us/powershell/"
+                    class="doc-link">Microsoft
+                    PowerShell Docs</a> and <a href="https://ss64.com/ps/" class="doc-link">SS64</a>.
+            </p>
+        </footer>
+    </main>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
