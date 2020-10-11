@@ -66,6 +66,14 @@
                 <li class="data-types">[array]: $myArray = @[1, 2, 3, 4, 5]</li>
                 <li class="data-types">[hashtable]: $myObject = @{ color = "green" }</li>
             </ul>
+            <p class="section-text">In addition to the data types above, variables are used to store values in
+                PowerShell. The following example shows a variable named "color" which stores the string value "green".
+            </p>
+            <div class="code-div">
+                <code>
+                    <b>$color = 'green'</b>
+                </code>
+            </div>
         </section>
         <section id="The_command_family_is_extensible" class="main-section">
             <header>
@@ -85,9 +93,11 @@
                 is an example of a cmdlet that gets all Active Directory users and retrieves their name, samAccount
                 name, and email properties.
             </p>
-            <code>
-                Get-ADUser -Filter * -Properties name, samAccountName, mail
-            </code>
+            <div class="code-div">
+                <code>
+                    <b>Get-ADUser -Filter * -Properties name, samAccountName, mail</b>
+                </code>
+            </div>
             <p class="section-text">
                 You can create your own cmdlet and function modules using compiled code or scripts. Modules can add
                 cmdlets and providers to the shell. PowerShell also supports scripts that are analogous to UNIX
@@ -120,9 +130,11 @@
                 PowerShell profile. This command gets all aliases that begin with gp or sp, except for aliases that end
                 with ps.
             </p>
-            <code>
-                Get-Alias -Name gp*, sp* -Exclude *ps
-            </code>
+            <div class="code-div">
+                <code>
+                    <b>Get-Alias -Name gp*, sp* -Exclude *ps</b>
+                </code>
+            </div>
 
         </section>
         <section id="PowerShell_handles_console_input_and_display" class="main-section">
@@ -159,21 +171,25 @@
                 get
                 output immediately. Pipelines work like this:
             </p>
-            <code>
-                Command-1 | Command-2 | Command-3
-            </code>
+            <div class="code-div">
+                <code>
+                    <b>Command-1 | Command-2 | Command-3</b>
+                </code>
+            </div>
             <p class="section-text">
                 The notation used for pipelines is similar to the notation used in other shells. At first glance, it
                 may
                 not be apparent how pipelines are different in PowerShell. Although you see text on the screen,
                 PowerShell pipes objects, not text, between commands. In this example, the Get-Process cmdlet gets all
-                the current running processes on the local machine, then pipes that output to Select-Object which then
-                captures the Name and ID of each process, which is then sorted in descending order and finally piped to
+                the current running processes on the local machine, pipes that output to Select-Object which then
+                captures the Name and ID of each process, which is sorted in descending order and finally piped to
                 format the output as a list.
             </p>
-            <code>
-                Get-Process -Name * | Select-Object name, id | Sort-Object -Descending | Format-List
-            </code>
+            <div class="code-div">
+                <code>
+                    <b>Get-Process -Name * | Select-Object name, id | Sort-Object -Descending | Format-List</b>
+                </code>
+            </div>
         </section>
         <section id="Objects_in_the_pipeline" class="main-section">
             <header>
@@ -209,9 +225,11 @@
                 Get-Help is a multipurpose command. Get-Help helps you learn how to use commands once you find them. To
                 get help for a PowerShell cmdlet, type Get-Help followed by the cmdlet name.
             </p>
-            <code>
-                Get-Help Get-ADUser
-            </code>
+            <div class="code-div">
+                <code>
+                    <b>Get-Help Get-ADUser</b>
+                </code>
+            </div>
         </section>
         <footer>
             <p class="section-text">Info taken from <a href="https://docs.microsoft.com/en-us/powershell/"
